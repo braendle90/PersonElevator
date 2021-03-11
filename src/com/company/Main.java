@@ -5,30 +5,28 @@ import java.util.Scanner;
 
 public class Main {
 
+     static int weightWithPersons = 0 ;
+
     public static void main(String[] args) {
 
 
-        Scanner scanner = new Scanner(System.in);
-        int numberPersonScanner = scanner.nextInt();
+        int numberPersonScanner = scannermethod();
+
+
         int maxWeightLift = 1600;
-        int weightWithPersons = 0;
+
         int personNumberInLift = 0;
 
 
         int[] weightAllPerson = new int[numberPersonScanner];
 
-        Random random = new Random();
-
-
-
-
 
         for (int i = 0; i < numberPersonScanner; i++) {
-            weightAllPerson[i] = random.nextInt(90-88)+88;
+            weightAllPerson[i] = randomPersonWeight();
             personNumberInLift = personNumberInLift + 1;
-            weightWithPersons = weightWithPersons + weightAllPerson[i];
+            //weightWithPersons = weightWithPersons + weightAllPerson[i];
 
-
+            personWithWeight(weightAllPerson[i]);
 
             if (weightWithPersons > maxWeightLift) {
                 System.out.println("Es ist die Maximale anzahl an Personen erreicht");
@@ -44,15 +42,35 @@ public class Main {
         }
 
 
+        System.out.println("Es sind " + (personNumberInLift - 1) + " Personen im Lift. Mit einem Gewiecht von " + weightWithPersons);
 
 
-
-        System.out.println("Es sind "+(personNumberInLift-1) +" Personen im Lift. Mit einem Gewiecht von "+ weightWithPersons );
-
-
-
-	// write your code here
+        // write your code here
     }
 
+    public static int randomPersonWeight() {
+
+        Random random = new Random();
+        int weightPerson = random.nextInt(90 - 88) + 88;
+
+
+        return weightPerson;
+
+    }
+
+    public static int personWithWeight(int weightPersonScanner){
+
+        weightWithPersons = weightWithPersons + weightPersonScanner;
+        return weightWithPersons;
+    }
+
+    public static int scannermethod(){
+
+        Scanner scanner = new Scanner(System.in);
+        int numberPersonScanner = scanner.nextInt();
+
+        return numberPersonScanner;
+
+    }
 
 }
